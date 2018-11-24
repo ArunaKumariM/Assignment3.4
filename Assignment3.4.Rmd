@@ -1,0 +1,58 @@
+---
+title: "As3.4"
+author: "Aruna"
+date: "24 November 2018"
+output: word_document
+---
+```{r}
+#Assignment 3.4
+#3. Implement user defined functions, within apply function using the mtcars data set
+# and produce  column wise summary statistics using apply function 
+#get mean of all variables
+apply(mtcars, 2, mean)
+# get the mean of the mpg column grouped by cylinders 
+tapply(mtcars$mpg, mtcars$cyl, mean)
+
+
+tmp <- do.call(data.frame, 
+               list(mean = apply(mtcars, 2, mean),
+                    sd = apply(mtcars, 2, sd),
+                    median = apply(mtcars, 2, median),
+                    min = apply(mtcars, 2, min),
+                    max = apply(mtcars, 2, max),
+                    n = apply(mtcars, 2, length)))
+tmp
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+#B. Write a program to extract the names of the list
+
+  for (colcount in 1:ncol(mtcars)) 
+  {
+    print(names(mtcars[colcount]))
+  }
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
